@@ -85,3 +85,7 @@ Observamos que algunas reglas de producción pueden ser afectadas al agregar un 
 
 En otros casos que son comunes es que falten algunos tokens como por ejemplo
    b =  # asignaciones sin ningun valor
+
+
+## Video Explicativo 
+https://youtu.be/72oCWI9cRk8
