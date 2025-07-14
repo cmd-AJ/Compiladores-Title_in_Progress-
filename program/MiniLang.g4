@@ -1,24 +1,40 @@
 grammar MiniLang;
 
-prog:   stat+ ;
+prog: stat+ ;
 
-stat:   expr NEWLINE                 # printExpr
-    |   ID '=' expr NEWLINE          # assign
-    |   NEWLINE                      # blank
+stat
+    : expr NEWLINE                      # printExpr
+    | ID '=' expr NEWLINE              # assign
+    | 'if' expr ':' block              # ifStmt
+    | 'while' expr ':' block           # whileStmt
+    | NEWLINE                          # blank
     ;
 
-expr:   expr ('*'|'/') expr          # MulDiv
-    |   expr ('+'|'-') expr          # AddSub
-    |   INT                          # int
-    |   ID                           # id
-    |   '(' expr ')'                 # parens
+block: '{' stat+ '}' ; // simple block for now (e.g., { x = 3 })
+
+expr
+    : expr ('*'|'/') expr              # MulDiv
+    | expr ('+'|'-') expr              # AddSub
+    | expr ('=='|'!='|'<'|'>'|'<='|'>=') expr  # comparison
+    | INT                              # int
+    | ID                               # id
+    | '(' expr ')'                     # parens
     ;
 
-MUL : '*' ; // define token for multiplication
-DIV : '/' ; // define token for division
-ADD : '+' ; // define token for addition
-SUB : '-' ; // define token for subtraction
-ID  : [a-zA-Z]+ ; // match identifiers
-INT : [0-9]+ ; // match integers
-NEWLINE:'\r'? '\n' ; // return newlines to parser (is end-statement signal)
-WS  : [ \t]+ -> skip ; // toss out whitespace
+MUL : '*' ;
+DIV : '/' ;
+ADD : '+' ;
+SUB : '-' ;
+EQ  : '==' ;
+NEQ : '!=' ;
+LT  : '<' ;
+GT  : '>' ;
+LE  : '<=' ;
+GE  : '>=' ;
+
+IF  : 'if' ;
+WHILE : 'while' ;
+ID  : [a-zA-Z_][a-zA-Z_0-9]* ;
+INT : [0-9]+ ;
+NEWLINE : '\r'? '\n' ;
+WS  : [ \t]+ -> skip ;
