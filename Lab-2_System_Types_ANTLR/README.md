@@ -46,3 +46,34 @@ Experimentarás con un sistema de tipos básico, extenderás una gramática y co
 - Ahora extienda más el sistema de tipos para validar al menos otros 3 conflictos de tipos.
 - **Video de YouTube no listado** (pero público) con los resultados de ejecutar los puntos anteriores y sus comentarios.
 - Repo de Github con todo su código.
+
+
+
+Que es un Listener y un Visitor?
+
+Visitor: Tiene la hablidad de manipular y decidir en que nodo del arbol puede empezar. Normalmente es utilizado en caso de operaciones implícitas o casting en este caso. Como podemos observar en las operaciones realizadas en program_test_pass.txt observamos en el caso de una operación implícita como int and float se puede realizar.
+
+Listener: Tiene que comenzar desde el principio hasta el final. Pero, no puede manipular y elegir que no ir a comparación del visitor. Estos casos normalmente son utilizados para estructuras como por ejemplo estructuras de if-else o while. 
+
+
+Por lo tanto si ejecutamos el analizados en el caso que no aprueba. Encontramos que no puede hacer operaciones de string a string, integer a string y flotantes. booleanos hacia string o integers.
+
+   Type checking error: Unsupported operand types for * or /: int and string
+   Type checking error: Unsupported operand types for * or /: int and string
+   Type checking error: Unsupported operand types for + or -: float and bool
+   Type checking error: Unsupported operand types for + or -: string and int
+
+
+Cambios realizados:
+
+   Ya se puede aceptar que concatenación de string a caracter
+   Se puede comparar con una operaciones a booleanos osea (2 > 4) == false
+   default: flotantes a string
+
+   Operaciones
+   Se agregaron operaciones como modular y exponenciales
+   Por otro lado se agregaron operaciones de comparación como mayor, menor que
+
+Link del Video
+
+https://youtu.be/at84SbzJvwE
